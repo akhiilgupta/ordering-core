@@ -16,6 +16,5 @@ curl --location --request GET 'http://localhost:8080/v1/orders/11312964'
 3. To create the delivery for a given order id:
 curl --location --request POST 'http://localhost:8080/v1/orders/'
 --header 'Content-Type: application/json'
---data-raw '{ "number_of_items": 3, "address": "address", "phone": \ 
-	"7699092812", "item_id": "123", "name": "test", "email": "test@gmail.com" }'
+--data-raw '{ "number_of_items": 3, "address": "address", "phone": "7699092812", "item_id": "123", "name": "test", "email": "test@gmail.com" }'
 
