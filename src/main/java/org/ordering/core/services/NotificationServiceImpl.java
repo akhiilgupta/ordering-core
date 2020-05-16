@@ -16,7 +16,7 @@ public class NotificationServiceImpl implements NotificationService {
    */
 
   @Async("threadPoolTaskExecutor")
-  public void sendNotifiation(Order order) {
+  public void sendNotification(Order order) {
     // logic to send notification to the user on status change
   }
 }

@@ -18,7 +18,7 @@ public enum OrderStatus {
   private HashSet<String> status;
 
   @JsonCreator
-  public static OrderStatus setErrorCode(String status) {
+  public static OrderStatus setStatus(String status) {
     return Arrays.stream(OrderStatus.values()).filter(s -> s.status.contains(status)).findAny()
         .orElse(OrderStatus.PENDING);
   }

@@ -30,7 +30,7 @@ public class OrdersService {
   /**
    * Method to create order for a given a user and store it in OrderEntities record. Delegate
    * delivery person to the requested order {@link CreateOrderResponse} and send notification when
-   * order is accepted by a delivery person.
+   * the order is accepted by a delivery person.
    * 
    * @param request
    * @return CreateOrder
@@ -47,7 +47,7 @@ public class OrdersService {
       ordersHandler.updateOrder(order);
 
       // Send notification to the user if delivery accepted by delivery person
-      notificationService.sendNotifiation(order);
+      notificationService.sendNotification(order);
     }
     return CreateOrderResponse.builder().status(order.getStatus()).orderId(order.getOrderId())
         .build();
@@ -56,7 +56,7 @@ public class OrdersService {
   /**
    * Method to get status of the order by order Id
    * 
-   * @param orderId order id of the order whose status to be fetched.
+   * @param orderId
    * @return
    */
 

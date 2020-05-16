@@ -56,7 +56,7 @@ public class SchedulerService {
         }
       }
       if (!OrderStatus.PENDING.equals(order.getStatus())) {
-        notificationService.sendNotifiation(order);
+        notificationService.sendNotification(order);
       }
     }
   }

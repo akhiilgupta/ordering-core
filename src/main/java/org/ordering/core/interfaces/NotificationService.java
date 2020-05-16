@@ -11,5 +11,5 @@ public interface NotificationService {
    * @return
    */
 
-  public void sendNotifiation(Order order);
+  public void sendNotification(Order order);
 }

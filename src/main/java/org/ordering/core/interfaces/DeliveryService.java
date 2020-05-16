@@ -9,10 +9,11 @@ import org.ordering.core.responses.DeliveryStatusResponse;
 public interface DeliveryService {
 
   /**
-   * Method to delegate an order to a delivery person for a given address
+   * Method to create a delivery for a given order id. Returns whether the delivery was accepted or
+   * not.
    * 
    * @param orderId
-   * @param address
+   * @param user
    * @return
    */
 
@@ -30,7 +31,8 @@ public interface DeliveryService {
   /**
    * Update status of the delivery if already accepted by the delivery service
    * 
-   * @param failed
+   * @param deliveryId
+   * @param status
    * @return
    */
 
