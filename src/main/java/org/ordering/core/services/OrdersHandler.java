@@ -35,8 +35,10 @@ public class OrdersHandler {
   }
 
   public Optional<Order> getOrderById(String orderId) {
-    return ordersList.stream().filter(o -> o.getOrderId().equals(orderId)).findAny()
-        .map(Order::new);
+    synchronized (ordersList) {
+      return ordersList.stream().filter(o -> o.getOrderId().equals(orderId)).findAny()
+          .map(Order::new);
+    }
   }
 
   /**
@@ -47,16 +49,18 @@ public class OrdersHandler {
    */
 
   public Optional<Order> updateOrder(Order order) {
-    for (OrderEntity orderEntity : ordersList) {
-      if (orderEntity.getOrderId().equals(order.getOrderId())) {
-        orderEntity.setStatus(order.getStatus());
-        orderEntity.setDeliveryId(order.getDeliveryId());
-        orderEntity.setNumberOfItems(order.getNumberOfItems());
-        orderEntity.setItemId(order.getItemId());
-        return Optional.of(order);
+    synchronized (ordersList) {
+      for (OrderEntity orderEntity : ordersList) {
+        if (orderEntity.getOrderId().equals(order.getOrderId())) {
+          orderEntity.setStatus(order.getStatus());
+          orderEntity.setDeliveryId(order.getDeliveryId());
+          orderEntity.setNumberOfItems(order.getNumberOfItems());
+          orderEntity.setItemId(order.getItemId());
+          return Optional.of(order);
+        }
       }
+      return Optional.empty();
     }
-    return Optional.empty();
   }
 
   /**
@@ -68,8 +72,10 @@ public class OrdersHandler {
    */
 
   public List<Order> getOrdersByStatus(OrderStatus status, int size) {
-    return ordersList.stream().filter(o -> o.getStatus().equals(status)).limit(size).map(Order::new)
-        .collect(Collectors.toList());
+    synchronized (ordersList) {
+      return ordersList.stream().filter(o -> o.getStatus().equals(status)).limit(size)
+          .map(Order::new).collect(Collectors.toList());
+    }
   }
 
 }
