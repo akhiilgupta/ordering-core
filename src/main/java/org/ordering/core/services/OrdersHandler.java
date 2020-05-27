@@ -2,6 +2,7 @@ package org.ordering.core.services;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -14,10 +15,11 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class OrdersHandler {
-  private static final List<OrderEntity> ordersList = new ArrayList<>();
+  private static final List<OrderEntity> ordersList =
+      Collections.synchronizedList(new ArrayList<>());
 
   /**
-   * Create order entity and store it in the list
+   * Create order entity and store it in the list in synchronous manner
    * 
    * @param request
    * @return

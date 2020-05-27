@@ -7,10 +7,10 @@ Service will run on the server: http://localhost:8080
 
 User following curls to test the endpoints:
 
-1. To update the status of the delivery: <br />
+1. To update the status of the order: <br />
 curl --location --request DELETE 'http://localhost:8080/v1/orders/11312964'
 
-2. To check the status of the delivery: <br />
+2. To check the status of the order: <br />
 curl --location --request GET 'http://localhost:8080/v1/orders/11312964'
 
 3. To create the delivery for a given order id: <br />
