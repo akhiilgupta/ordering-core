@@ -97,12 +97,14 @@ public class OrdersService {
         order.setStatus(OrderStatus.FAILED);
         response.setStatus(OrderStatus.FAILED);
         response.setMessage(OrderConstants.SUCCESS);
-      } else {
+      } else if (OrderStatus.ACCEPTED.equals(order.getStatus())) {
         order.setStatus(deliveryService.updateStatus(order.getDeliveryId(), OrderStatus.FAILED)
             .map(DeliveryStatusResponse::getStatus).orElse(order.getStatus()));
         response.setStatus(order.getStatus());
         response.setMessage(OrderConstants.SUCCESS);
       }
+      // Send notification to the user of the current state after cancel attempt.
+      notificationService.sendNotification(order);
       ordersHandler.updateOrder(order);
       return response;
 
